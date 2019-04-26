@@ -1,0 +1,5 @@
+profile: service
+defaultPackage: fhirmessage
+---
+testFramework: junit
+sourceLanguage: java
