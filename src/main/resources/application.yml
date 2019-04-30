@@ -1,3 +1,6 @@
 micronaut:
   application:
     name: fhirmessage
+  server:
+    netty:
+      log-level: INFO
