@@ -3,12 +3,15 @@ package fhirmessage.rest;
 import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.context.PerformanceOptionsEnum;
 import ca.uhn.fhir.parser.IParser;
+import ca.uhn.fhir.parser.StrictErrorHandler;
 import ca.uhn.fhir.rest.client.api.IGenericClient;
 import ca.uhn.fhir.rest.client.api.ServerValidationModeEnum;
+import fhirmessage.service.FHIRService;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.*;
 
 
+import io.micronaut.retry.annotation.Fallback;
 import org.hl7.fhir.dstu3.model.Bundle;
 import org.hl7.fhir.dstu3.model.UriType;
 import org.hl7.fhir.instance.model.api.IBaseResource;
@@ -21,6 +24,9 @@ public class MessageController {
     private static final Logger logger = org.slf4j.LoggerFactory.getLogger(MessageController.class);
 
 
+    FHIRService fhirService = new FHIRService();
+
+
     @Get(produces = MediaType.TEXT_PLAIN)
     public String index() {
 
@@ -29,6 +35,34 @@ public class MessageController {
                 + "POST FHIR XML or JSON to /$process-message to process a Message Bundle and unpack it on the FHIR Server.";
 
 
+    }
+
+
+    @Post(uri = "/$validate", consumes = { MediaType.APPLICATION_XML , MediaType.APPLICATION_JSON }, produces = MediaType.APPLICATION_XML)
+    public String doValidate(@Body String body){
+        //validate the payload for structure
+        FhirContext ctx = FhirContext.forDstu3();
+        IParser parser = ctx.newXmlParser();
+        parser.setParserErrorHandler(new StrictErrorHandler());
+        Bundle response = parser.parseResource(Bundle.class, body);
+
+        //validate as per schema definitions
+
+
+
+        Bundle b = getBundle(body);
+        Bundle transactionBundle = getTransactionBundle(b);
+       // FhirContext ctx = FhirContext.forDstu3();
+        String serverBase = "https://eip-fhir.experimental.aimsplatform.com/hapi-fhir/baseDstu3";
+        IGenericClient client = ctx.newRestfulGenericClient(serverBase);
+
+        // Create a parser and configure it to use the strict error handler
+       // IParser parser = ctx.newXmlParser();
+        parser.setParserErrorHandler(new StrictErrorHandler());
+
+        String ret = ctx.newXmlParser().setPrettyPrint(true).encodeResourceToString(transactionBundle);
+        logger.debug(ret);
+        return ret;
     }
 
 

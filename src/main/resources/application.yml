@@ -2,5 +2,6 @@ micronaut:
   application:
     name: fhirmessage
   server:
+    port: 9999
     netty:
       log-level: INFO
