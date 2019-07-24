@@ -1,0 +1,26 @@
+apiVersion: gitkube.sh/v1alpha1
+kind: Remote
+metadata:
+  creationTimestamp: null
+  name: arlnremote
+  namespace: default
+spec:
+  authorizedKeys:
+  - |
+    ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC37lrYbrWPfps+lMoOvYW82I4K7h1+QCLTjc4IV1h1+hBIo86zIodc5bL22RdqZjHEY8VS9EWqmxkNawq5EjcP8C5Siu9qQpFN6NAApF7JjMpgChq2vL0UkE0JOeUxHBbP0onOXqNLQ9vMSvP1KBuXpp+YjS64/6/DMlrmpl8O0jx0+NZk846C8i8j9z3RNTkgxugo4WeTK6tJt9Qg0UuoT14wD6Q7Qb6YxuTdbeM1Z/DecN3kf244leSeU2sBFnu7LkQzaB8QF5MQfptVxRwfCB2E1EWm1EWsyLFh2wYxYcppMMHOQyxtGEcsgPYjfxSUppy2kmTs+uNY9VZSBT31 rtarar@rishis-mbp.lan
+  deployments:
+  - containers:
+    - dockerfile: Dockerfile
+      name: fhirmessage
+      path: ./
+    name: fhirmessage
+  manifests:
+    helm: {}
+    path: manifests
+  registry:
+    credentials:
+      secretRef: eip-registry-secret 
+    url: https://471108701394.dkr.ecr.us-east-1.amazonaws.com/AWS
+status:
+  remoteUrl: ""
+  remoteUrlDesc: ""

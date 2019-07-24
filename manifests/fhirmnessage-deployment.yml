@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: fhirmessage
+  name: fhirmessage
+  namespace: default
+spec:
+  replicas: 1
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: fhirmessage
+    spec:
+      containers:
+        - image: 471108701394.dkr.ecr.us-east-1.amazonaws.com/eip/fhirmessage:latest
+          imagePullPolicy: IfNotPresent
+          name: fhirmessage
+          ports:
+            - containerPort: 9999
+              protocol: TCP
+          resources: {}
+      securityContext: {}
+      terminationGracePeriodSeconds: 0
+status: {}

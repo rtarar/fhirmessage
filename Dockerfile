@@ -10,5 +10,5 @@ FROM adoptopenjdk/openjdk11-openj9:jdk-11.0.1.13-alpine-slim
 RUN apk --no-cache add curl
 COPY --from=builder /usr/src/app/target/fhirmessage*.jar fhirmessage.jar
 EXPOSE 9999
-RUN sh -c 'touch ./hl7-incident-processor.jar'
+RUN sh -c 'touch ./fhirmessage.jar'
 ENTRYPOINT ["java","-jar","./fhirmessage.jar"]
