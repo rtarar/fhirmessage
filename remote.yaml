@@ -20,7 +20,7 @@ spec:
   registry:
     credentials:
       secretRef: eip-registry-secret 
-    url: https://471108701394.dkr.ecr.us-east-1.amazonaws.com/AWS
+    url: https://471108701394.dkr.ecr.us-east-1.amazonaws.com/eip
 status:
   remoteUrl: ""
   remoteUrlDesc: ""
