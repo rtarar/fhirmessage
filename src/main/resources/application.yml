@@ -4,4 +4,4 @@ micronaut:
   server:
     port: 9999
     netty:
-      log-level: INFO
+      log-level: DEBUG
