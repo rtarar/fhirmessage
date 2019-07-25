@@ -31,7 +31,7 @@ public class MessageController {
     public String index() {
 
 
-        return "POST FHIR XML or JSON to /transaction to get a converted Transaction Bundle \n"
+        return "POST FHIR XML or JSON to /transaction to get a converted FHIR Transaction Bundle \n"
                 + "POST FHIR XML or JSON to /$process-message to process a Message Bundle and unpack it on the FHIR Server.";
 
 
