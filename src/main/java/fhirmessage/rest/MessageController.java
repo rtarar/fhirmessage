@@ -32,7 +32,7 @@ public class MessageController {
 
 
         return "POST FHIR XML or JSON to /transaction to get a converted FHIR Transaction Bundle \n"
-                + "POST FHIR XML or JSON to /$process-message to process a Message Bundle and unpack it on the FHIR Server.";
+                + "POST FHIR XML or  JSON to /$process-message to process a Message Bundle and unpack it on the FHIR Server.";
 
 
     }
