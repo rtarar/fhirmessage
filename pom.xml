@@ -9,7 +9,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <exec.mainClass>fhirmessage.Application</exec.mainClass>
       <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-      <hapi.version>3.6.0</hapi.version>
+      <hapi.version>3.8.0</hapi.version>
   </properties>
   <repositories>
     <repository>
